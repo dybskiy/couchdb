@@ -206,7 +206,7 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: './app/**/*',
+      files: helper.watchFiles(["./app/**/*"]),
       tasks: ['debug', 'template']
     },
 

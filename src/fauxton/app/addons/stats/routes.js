@@ -30,6 +30,8 @@ function(app, FauxtonAPI, Stats) {
       {"name": "Statistics", "link": "_stats"}
     ],
 
+    selectedHeader: "Statistics",
+
     initialize: function () {
       this.stats = new Stats.Collection();
 

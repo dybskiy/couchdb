@@ -32,6 +32,8 @@ function(app, FauxtonAPI, Log) {
       "_log": "showLog"
     },
 
+    selectedHeader: "Log",
+
     roles: ["_admin"],
 
     apiUrl: function() {
