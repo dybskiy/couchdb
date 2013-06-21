@@ -14,9 +14,10 @@ define([
   "app",
   "api",
   "addons/compaction/resources",
-  "addons/compaction/views"
+  "addons/compaction/views",
+  "modules/databases/base"
 ],
-function(app, FauxtonAPI, compaction, Views) {
+function(app, FauxtonAPI, Databases, Views, compaction) {
   var  RepRouteObject = FauxtonAPI.RouteObject.extend({
     layout: "one_pane",
     routes: {

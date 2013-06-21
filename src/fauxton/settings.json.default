@@ -4,7 +4,8 @@
   { "name": "logs" },
   { "name": "stats" },
   { "name": "contribute" },
-  { "name": "auth" }
+  { "name": "auth" },
+  { "name": "compaction"}
   ],
     "template": {
       "src": "assets/index.underscore",
