@@ -42,7 +42,7 @@ the License.
     </div>
 <!--     <div class="span6">
       <form id="jump-to-doc" class="form-inline">
-        <label> Jump To: 
+        <label> Jump To:
           <input type="text" id="jump-to-doc-id" class="input-small" placeholder="Document Id"></input>
         </label>
       </form>
@@ -51,11 +51,12 @@ the License.
 
   <nav>
     <ul class="nav nav-list">
+      <li class="nav-header">Primary Indices</li>
       <li class="active"><a id="all-docs" href="#<%= database.url('index') %>?limit=100" class="toggle-view"><i class="icon-list"></i> All documents</a></li>
       <li><a id="design-docs" href='#<%= database.url("index") %>?limit=100&startkey="_design"&endkey="_e"'  class="toggle-view"><i class="icon-list"></i> All design docs</a></li>
     </ul>
     <ul class="nav nav-list views">
-      <li class="nav-header">Secondary Indexes</li>
+      <li class="nav-header">Secondary Indices</li>
       <li><a id="new-view" href="#<%= database.url('app') %>/new_view" class="new"><i class="icon-plus"></i> New</a></li>
     </ul>
   </nav>

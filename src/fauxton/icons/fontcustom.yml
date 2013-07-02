@@ -50,9 +50,9 @@ file_hash: false
 # ---------------------------------------------------------------------------- #
 # CSS Class Prefix
 #
-default: fonticon-
+#default: 
 
-  #css_prefix: glyph-
+css_prefix: fonticon-
 
 # ---------------------------------------------------------------------------- #
 # @Font-face Path
@@ -61,7 +61,7 @@ default: fonticon-
 #
 # default: none
 
-#font_face_path: assets/fonts/fontcustom
+font_face_path: ../img
 
 # ---------------------------------------------------------------------------- #
 # Debug

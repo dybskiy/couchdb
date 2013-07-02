@@ -12,13 +12,23 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 
-<a class="brand" href="#">Project Fauxton</a>
+<a class="brand" href="#"><div class="icon"><!-- * --></div></a>
 <nav id="main_navigation">
   <ul id="nav-links" class="nav pull-right">
     <% _.each(navLinks, function(link) { %>
       <% if (!link.view) { %>
         <li><a class="<%= link.icon %> fonticon" href="<%= link.href %>"><%= link.title %></a></li>
       <% } %>
+    <% }); %>
+  </ul>
+
+    <ul id="bottom-nav-links" class="nav">
+    <% _.each(bottomNavLinks, function(link) { %>
+      <li class="<%= (link.href).replace(" ", "_").replace("#/","") %>">
+          <a class="<%= link.icon %> fonticon" href="<%= link.href %>">
+              <%= link.title %>
+          </a>
+      </li>
     <% }); %>
   </ul>
 </nav>

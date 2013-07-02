@@ -148,13 +148,13 @@ module.exports = function(grunt) {
 
     template: templateSettings,
 
-    // The concatenate task is used here to merge the almond require/define
+    // The concatenate task is used here to merge the require.js require/define
     // shim and the templates into the application code.  It's named
     // dist/debug/require.js, because we want to only load one script file in
     // index.html.
     concat: {
       requirejs: {
-        src: ["assets/js/libs/almond.js", "dist/debug/templates.js", "dist/debug/require.js"],
+        src: ["assets/js/libs/require.js", "dist/debug/templates.js", "dist/debug/require.js"],
         dest: "dist/debug/js/require.js"
       },
 

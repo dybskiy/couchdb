@@ -46,9 +46,9 @@ function(app, FauxtonAPI, Databases, Views) {
       this.databases = new Databases.List();
       this.deferred = FauxtonAPI.Deferred();
 
-      this.sidebarView = this.setView("#sidebar-content", new Views.Sidebar({
-        collection: this.databases
-      }));
+      // this.sidebarView = this.setView("#sidebar-content", new Views.Sidebar({
+      //   collection: this.databases
+      // }));
     },
 
     allDatabases: function() {

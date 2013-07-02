@@ -26,7 +26,7 @@
 /*define variable for color here, remove to seperate file later*/
 
 @red: #E93F33;
-@darkred: #AF2D24; 
+@darkred: #AF2D24;
 
 /*nav*/
 @primaryNav : #3A2C2B;
@@ -55,6 +55,9 @@
 
 @sidebarWidth: 330px;
 
+@radius: 0;
+@transitionSpeed: .25s;
+@transitionEaseType: linear;
 
 /*buttons */
 @redButton: @red;
@@ -108,10 +111,14 @@ a:active {
   }
 }
 
+/* bootstrap override */
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
 
 /* Fixed side navigation */
 #primary-navbar {
-  .box-shadow(inset -7px 0 15px -6px #000);
   height: 100%;
   position: fixed;
   width: @navWidth;
@@ -123,7 +130,7 @@ a:active {
     .nav{
       li{
         a{
-          .hide-text; 
+          .hide-text;
         }
       }
     }
@@ -131,33 +138,50 @@ a:active {
 
   .navbar {
     a.brand {
-      background: url(../img/minilogo.png) no-repeat 0 0;
       display: block;
       .hide-text;
-      margin: 15px;
+      margin: 10px 0;
       height: 30px;
       width: 30px;
+      .icon{
+        background: url(../img/minilogo.png) no-repeat 0 0;
+        display: block;
+        .background-size(cover);
+        height: 100%;
+        width: 100%; 
+      }
     }
     nav {
       .nav{
         li{
-          .box-shadow(inset -7px 0 15px -6px #000);
+          .transition(all @transitionSpeed @transitionEaseType);
           padding: 15px 0px 15px 60px;
           font-size: 19px;
-          width: 100%;
+          width: @navWidth;
           font-weight: normal;
           font-family: helvetica;
           .box-sizing(border-box);
           background-color: @navBG;
           border-bottom:  1px solid @primaryNav;
           min-height: 55px;
+          .closeMenu & {
+             width: @collapsedNavWidth;
+          }
+          &.active, &:hover{
+            background-color: @primaryNav;
+          }
+          &:hover a.fonticon:before{
+            color: @white;
+          }
           a{
+            background-color: transparent;
             padding: 0;
             color: #fff;
             text-shadow: none;
             &.fonticon {
               position: relative;
               &:before {
+                .transition(all @transitionSpeed @transitionEaseType);
                 position: absolute;
                 left: -35px;
                 font-size: 24px;
@@ -167,9 +191,18 @@ a:active {
           }
         }
       }
+      ul#bottom-nav-links{
+        margin-top: 200px;
+        li {
+          background-color: #574C4B;
+          font-size: 16px;
+        }
+      }
     }
   }
 }
+
+
 
 #dashboard {
   position: relative;
@@ -188,16 +221,20 @@ a:active {
 #dashboard-content{
   padding: 20px;
   .with-sidebar &{
+    .box-shadow(-7px 0 15px -6px #000);
     padding: 0px;
     bottom: 0px;
     top: 60px;
     position: absolute;
+    overflow-x: hidden;
     overflow-y: auto;
     left: @sidebarWidth;
     right: 0;
     .box-sizing(border-box);
   }
   > div.inner {
+    width: 100%;
+    position: relative;
     display: block;
   }
 }
@@ -222,8 +259,11 @@ a:active {
   top: 0;
   border-bottom: 5px solid @breadcrumbBorder;
   .box-shadow(0 4px 6px -2px #808080);
-  left: auto;
+  left: @navWidth;
   z-index: 100;
+  .closeMenu & {
+    left: @collapsedNavWidth;
+  }
   .one-pane & {
     border: none;
     .box-shadow(none);
@@ -237,7 +277,7 @@ a:active {
     margin-bottom: 0;
     background-color: transparent;
     padding: 0;
-    li {    
+    li {
       color: @breadcrumbText;
       font-size: 30px;
       text-shadow: none;
@@ -265,6 +305,9 @@ footer#mainFooter{
 #dashboard-upper-menu{
   .topmenu-defaults;
   background-color: #CBCBCB;
+  z-index: 1;
+  position: fixed;
+  width: inherit;
 }
 
 #dashboard-lower-content{
@@ -281,20 +324,38 @@ footer#mainFooter{
   }
   nav {
     .nav-list{
-      a{
-        .box-shadow(inset -7px 0 15px -6px #000);
-        display: block;
+      li.active a {
+        background-color: @darkred;
+        color: #fff;
+        i {
+          background-image: url("../img/glyphicons-halflings-white.png");
+        }
       }
+      a{
+        display: block;
+        padding: 10px 5px 10px 15px;
+        color: #333333;
+        border-bottom: 1px solid #989898;
+      }
+      .nav-header{
+        background-color: #B2B2B2;
+        padding: 5px;
+        text-shadow: none;
+        color: #333333;
+        border-bottom: 1px solid #989898;
+      }
+
     }
   }
 }
 #sidebar-content {
-  .box-shadow(inset -7px 0 15px -6px #000);
+.box-shadow(-7px 0 15px -6px #000);
   position: absolute;
   bottom: 0px;
   top: 60px;
   width: @sidebarWidth;
   left: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   > div.inner {
     display: block;
@@ -321,13 +382,15 @@ footer#mainFooter{
 }
 
 /*TABLE STYLES*/
+table.databases {clear: both;}
 thead {border-bottom: 2px solid @redButton;}
-
-
+tbody {padding-top: 10px;}
+.table-condensed td {padding: 18px 5px;}
 
 
 /*form elements and buttons*/
 .button{
+  .transition(all @transitionSpeed @transitionEaseType);
   border: none;
   background-color: @redButton;
   color: #fff;
@@ -352,8 +415,8 @@ thead {border-bottom: 2px solid @redButton;}
     color: #666666;
     &:after {
       content: '';
-      width: 0; 
-      height: 0; 
+      width: 0;
+      height: 0;
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
       border-top: 7px solid #989898;
@@ -372,12 +435,11 @@ thead {border-bottom: 2px solid @redButton;}
   }
 }
 
-input[type=text],
+input[type=text], input[type=password],
 .navbar-form input{
-  .border-radius(0);
   padding: 7px;
   margin-top: -5px;
-  border: 1px solid #989898;  
+  border: 1px solid @inputBorder;
 }
 
 
@@ -392,14 +454,28 @@ label.fonticon-search {
     background-color: #E1E1E1;
     height: 18px;
     width: 18px;
-    border: 1px solid #989898;
+    border: 1px solid @inputBorder;
     padding: 8px;
     top: -5px;
   }
 }
 
+.form-actions {
+  background: none;
+  border: none;
+}
+
+.input-append,
+.input-prepend {
+  .add-on {
+    font-size: 15px;
+    padding: 7px 5px;
+    margin-top: -5px;
+  }
+}
+
 /*pretty print*/
-pre.prettyprint { 
+pre.prettyprint {
   background: #E5E0DD;
   border: none;
 }

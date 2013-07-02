@@ -67,19 +67,29 @@ function(app, Backbone) {
     navLinks: [
       {href:"#/_all_dbs", title:"Databases", icon: "fonticon-database"}
     ],
+
+    bottomNavLinks: [],
+
     initialize: function() {
     },
 
     serialize: function() {
-      return {navLinks: this.navLinks};
+      return {navLinks: this.navLinks, bottomNavLinks: this.bottomNavLinks};
     },
 
     addLink: function(link) {
-      if (link.top){
+      // link.top means it gets pushed to the top of the array,
+      // link.bottomNav means it goes to the additional bottom nav
+      if (link.top && !link.bottomNav){
         this.navLinks.unshift(link);
+      } else if (link.top && link.bottomNav){
+        this.bottomNavLinks.unshift(link);
+      } else if (link.bottomNav) {
+        this.bottomNavLinks.push(link);
       } else {
         this.navLinks.push(link);
       }
+
       this.trigger("link:add");
 
       this.render();

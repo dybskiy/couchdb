@@ -131,6 +131,8 @@ function(app, FauxtonAPI, Documents, pouchdb, Codemirror, JSHint) {
   Views.UploadModal = FauxtonAPI.View.extend({
     template: "templates/documents/upload_modal",
 
+    disableLoader: true,
+    
     initialize: function (options) {
       _.bindAll(this);
     },
@@ -218,7 +220,7 @@ function(app, FauxtonAPI, Documents, pouchdb, Codemirror, JSHint) {
 
   Views.FieldEditorTabs = FauxtonAPI.View.extend({
     template: "templates/documents/doc_field_editor_tabs",
-
+    disableLoader: true,
     initialize: function(options) {
       this.selected = options.selected;
     },
@@ -481,11 +483,10 @@ function(app, FauxtonAPI, Documents, pouchdb, Codemirror, JSHint) {
 
   Views.Doc = FauxtonAPI.View.extend({
     template: "templates/documents/doc",
-
     events: {
       "click button.save-doc": "saveDoc"
     },
-
+    disableLoader: true,
     initialize: function (options) {
       this.database = options.database;
     },
@@ -608,7 +609,7 @@ function(app, FauxtonAPI, Documents, pouchdb, Codemirror, JSHint) {
 
   Views.DocFieldEditor = FauxtonAPI.View.extend({
     template: "templates/documents/doc_field_editor",
-
+    disableLoader: true,
     events: {
       "click button.save": "saveDoc"
     },
